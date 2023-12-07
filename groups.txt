@@ -1,0 +1,18 @@
+Testbench Group List
+
+Total Groups Coverage Summary 
+SCORE  INST SCORE WEIGHT 
+ 96.80  96.80     1      
+
+
+Total groups in report: 7
+-------------------------------------------------------------------------------
+SCORE  INSTANCES WEIGHT GOAL   AT LEAST PER INSTANCE AUTO BIN MAX PRINT MISSING COMMENT NAME                                    
+ 91.67 --        1      100    1        0            64           64                    test_pkg::coverage::enable_a_and_b      
+ 91.69  91.69    1      100    1        0            64           64                    test_pkg::coverage::enable_and_reset    
+ 96.88 --        1      100    1        0            64           64                    test_pkg::coverage::illegal_values_a    
+ 98.44 --        1      100    1        0            64           64                    test_pkg::coverage::illegal_values_b    
+ 98.96 --        1      100    1        0            64           64                    test_pkg::coverage::clear_irq_trigger_a 
+100.00 100.00    1      100    1        0            64           64                    test_pkg::coverage::operations          
+100.00 --        1      100    1        0            64           64                    test_pkg::coverage::clear_irq_trigger_b 
+

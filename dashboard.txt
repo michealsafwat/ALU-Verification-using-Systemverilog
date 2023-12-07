@@ -1,0 +1,21 @@
+Dashboard
+
+Date: Fri Dec  8 04:43:19 2023
+
+User: IC
+
+Version: I-2014.03
+Command line: urg -dir /tmp/urgForDVE.24504/curcov.vdb -report urgReport -format text -elfile /tmp/urgForDVE.24504/cur.el 
+
+
+-------------------------------------------------------------------------------
+Total Coverage Summary 
+SCORE  LINE   GROUP  
+ 98.40 100.00  96.80 
+
+
+-------------------------------------------------------------------------------
+Hierarchical coverage data for top-level instances 
+SCORE  LINE   NAME   
+100.00 100.00 ALU_tb 
+
