@@ -13,6 +13,7 @@ class transaction;
   bit [7:0] alu_out;
   bit alu_irq;
 
+
   function transaction copy();
     copy = new();
     copy.rst_n = this.rst_n;
@@ -95,36 +96,13 @@ class transaction;
   constraint trigger_irq_a {
     if (alu_enable && alu_enable_a) {
       if (alu_op_a == 2'b00) {
-        alu_in_a dist {
-          8'hFF :/ 80,
-          [8'h0 : 8'hFE] :/ 20
-        };
-        alu_in_b dist {
-          8'hFF :/ 80,
-          [8'h0 : 8'hFE] :/ 20
-        };
+        (alu_in_a & alu_in_b == 8'hFF);
       } else
       if (alu_op_a == 2'b10) {
-        alu_in_a dist {
-          8'hF8 :/ 60,
-          [8'h0 : 8'hF7] :/ 20,
-          [8'hF9 : 8'hFF] :/ 20
-        };
-        alu_in_b dist {
-          8'h0 :/ 80,
-          [8'h1 : 8'hFF] :/ 20
-        };
+       (alu_in_a | alu_in_b == 8'hF8);
       } else
       if (alu_op_a == 2'b11) {
-        alu_in_a dist {
-          8'h0 :/ 60,
-          [8'h1 : 8'hFF] :/ 40
-        };
-        alu_in_b dist {
-          8'h7C :/ 60,
-          [8'h0 : 8'h7B] :/ 20,
-          [8'h7D : 8'hFF] :/ 20
-        };
+       (alu_in_a ^ alu_in_b == 8'h83);
       }
     }
 
@@ -133,49 +111,16 @@ class transaction;
   constraint trigger_irq_b {
     if (alu_enable && alu_enable_b) {
       if (alu_op_a == 2'b00) {
-        alu_in_a dist {
-          8'hFF :/ 80,
-          [8'h0 : 8'hFE] :/ 20
-        };
-        alu_in_b dist {
-          8'hF1 :/ 80,
-          [8'h0 : 8'hF0] :/ 10,
-          [8'hF2 : 8'hFF] :/ 10
-        };
+       (~(alu_in_a ^ alu_in_b) == 8'hF1);
       } else
       if (alu_op_a == 2'b01) {
-        alu_in_a dist {
-          8'hF4 :/ 80,
-          [8'h0 : 8'hF3] :/ 10,
-          [8'hF5 : 8'hFF] :/ 10
-        };
-        alu_in_b dist {
-          8'hFF :/ 80,
-          [8'h0 : 8'hFE] :/ 20
-        };
+        (alu_in_a & alu_in_b == 8'hF4);
       } else
       if (alu_op_a == 2'b10) {
-        alu_in_a dist {
-          8'h0 :/ 80,
-          [8'h1 : 8'hFF] :/ 20
-        };
-        alu_in_b dist {
-          8'h0A :/ 80,
-          [8'h0 : 8'h09] :/ 10,
-          [8'h0B : 8'hFF] :/ 10
-        };
+       (~(alu_in_a | alu_in_b) == 8'hF5);
       } else
       if (alu_op_a == 2'b11) {
-        alu_in_a dist {
-          8'h0F :/ 80,
-          [8'h0 : 8'h0E] :/ 10,
-          [8'h10 : 8'hFF] :/ 10
-        };
-        alu_in_b dist {
-          8'hF0 :/ 80,
-          [8'h0 : 8'hE0] :/ 10,
-          [8'hF1 : 8'hFF] :/ 10
-        };
+        (alu_in_a | alu_in_b == 8'hFF);
       }
     }
 
